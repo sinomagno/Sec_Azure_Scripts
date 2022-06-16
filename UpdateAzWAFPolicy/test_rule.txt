@@ -1,0 +1,57 @@
+{
+"Name": "My_important_exception",
+"Priority": "10",
+"RuleType": "MatchRule",
+"Action": "Allow",
+"MatchConditionsText" : [
+                        {
+                          "MatchVariables": [
+                            {
+                              "VariableName": "RequestHeaders",
+                              "Selector": "host"
+                            }
+                          ],
+                          "OperatorProperty": "equal",
+                          "NegationConditon": false,
+                          "MatchValues": [
+                            "testing.example.com",
+			    "sino.example.com" 
+                          ],
+                          "Transforms": [
+                            "Lowercase"
+                          ]
+                        },
+                        {
+                          "MatchVariables": [
+                            {
+                              "VariableName": "RequestHeaders",
+                              "Selector": "referer"
+                            }
+                          ],
+                          "OperatorProperty": "BeginsWith",
+                          "NegationConditon": false,
+                          "MatchValues": [
+                            "https://testing.example.com"
+                          ],
+                          "Transforms": [
+                            "Lowercase"
+                          ]
+                        },
+                        {
+                          "MatchVariables": [
+                            {
+                              "VariableName": "RequestUri"
+                            }
+                          ],
+                          "OperatorProperty": "Contains",
+                          "NegationConditon": false,
+                          "MatchValues": [
+                            "/api/sino/test",
+                            "/test/uri/"
+                          ],
+                          "Transforms": [
+                            "Lowercase"
+                          ]
+                        }
+                      ]
+}
